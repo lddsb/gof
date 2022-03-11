@@ -2,12 +2,15 @@ package singleton_test
 
 import (
 	"github.com/lddsb/gof/singleton"
-	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestGetInstance(t *testing.T) {
-	assert.Equal(t, singleton.GetInstance(), singleton.GetInstance())
+	ins1 := singleton.GetInstance()
+	ins2 := singleton.GetInstance()
+	if ins1 != ins2 {
+		t.Fatal("instance is not equal")
+	}
 }
 
 func BenchmarkGetInstanceParallel(b *testing.B) {
